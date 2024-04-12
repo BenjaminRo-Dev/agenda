@@ -25,8 +25,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'telefono',
         'email',
         'password',
+        'rol_id'
     ];
 
     /**
@@ -62,4 +64,58 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function administrador()
+    {
+        return $this->hasOne(Administrador::class);
+    }
+    
+    public function isAdministrador()
+    {
+        return $this->role->nombre === 'Administrador';
+    }
+
+    public function profesor()
+    {
+        return $this->hasOne(Profesor::class);
+    }
+
+    public function isProfesor()
+    {
+        return $this->role->nombre === 'Profesor';
+    }
+    
+    public function estudiante()
+    {
+        return $this->hasOne(Estudiante::class);
+    }
+
+    public function isEstudiante()
+    {
+        return $this->role->nombre === 'Estudiante';
+    }
+
+    public function tutor()
+    {
+        return $this->hasOne(Tutor::class);
+    }
+
+    public function isTutor()
+    {
+        return $this->role->nombre === 'Tutor';
+    }
+
+    public function publicacion()
+    {
+        return $this->hasMany(Publicacion::class);
+    }
+
+    
+
+
 }
