@@ -117,9 +117,9 @@ class UserController extends Controller
         }
     }
 
-    public function export()
-    {
-        return back()
-            ->with('msj_ok', 'Exportando...');
-    }
+    // public function export()
+    // {
+    //     return back()
+    //         ->with('msj_ok', 'Exportando...');
+    // }
 }

@@ -19,7 +19,7 @@
                         </div>
                         <button class="btn btn-primary">Importar usuarios</button>
                     </form>
-                    <a href="{{ route('users.export') }}" class="btn btn-success my-2">Exportar usuarios</a>
+                    {{-- <a href="{{ route('users.export') }}" class="btn btn-success my-2">Exportar usuarios</a> --}}
                 </div>
             </div>
             <div class="card mt-3">

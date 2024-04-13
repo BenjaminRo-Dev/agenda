@@ -9,7 +9,12 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['grado', 'paralelo', 'gestion'];
+    protected $fillable = ['grado', 'paralelo', 'gestion', 'nivel_id'];
+
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class);
+    }
 
     public function estudiantes()
     {

@@ -16,6 +16,13 @@ return new class extends Migration
             $table->integer('grado');
             $table->string('paralelo');
             $table->integer('gestion');
+            $table->unsignedBigInteger('nivel_id');
+
+            $table->foreign('nivel_id')->references('id')->on('nivels')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unique(['grado', 'paralelo', 'gestion', 'nivel_id']);
+
             $table->timestamps();
         });
     }
