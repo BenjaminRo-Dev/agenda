@@ -20,3 +20,15 @@ Route::middleware([
 
 Route::resource('users', UserController::class)
     ->middleware('auth:sanctum');
+
+Route::post('/import', [UserController::class, 'import'])
+    ->name('users.import')
+    ->middleware('auth:sanctum');
+
+Route::get('/export', [UserController::class, 'export'])
+    ->name('users.export')
+    ->middleware('auth:sanctum');
+
+Route::get('/excel', [UserController::class, 'excel'])
+    ->name('users.excel')
+    ->middleware('auth:sanctum');

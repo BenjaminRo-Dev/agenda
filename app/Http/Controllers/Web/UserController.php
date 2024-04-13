@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UserImport;
 use App\Models\Administrador;
 use App\Models\Estudiante;
 use App\Models\Profesor;
@@ -10,6 +11,7 @@ use App\Models\Role;
 use App\Models\Tutor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -90,5 +92,34 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')
             ->with('msj_ok', 'Eliminado: ' . $user->name);
+    }
+
+    public function excel()
+    {
+        // $users = User::paginate(10);
+        $users = User::orderBy('id', 'desc')->paginate(10);
+        return view('usuarios.excel', compact('users'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv|max:2048'
+        ]);
+
+        try {
+            $file = $request->file('file');
+            Excel::import(new UserImport, $file);
+            return back()->with('msj_ok', 'Archivo cargado: ' . $file->getClientOriginalName());
+        } catch (\Throwable $th) {
+            // return "catch : $th";
+            return back()->with('msj_error', 'Error al cargar el archivo: ' . $file->getClientOriginalName());
+        }
+    }
+
+    public function export()
+    {
+        return back()
+            ->with('msj_ok', 'Exportando...');
     }
 }
