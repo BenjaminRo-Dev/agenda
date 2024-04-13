@@ -9,7 +9,12 @@ class Materia extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nombre', 'gestion'];
+    protected $fillable = ['nombre', 'grado', 'gestion', 'nivel_id'];
+
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class);
+    }
 
     public function estudiantes()
     {

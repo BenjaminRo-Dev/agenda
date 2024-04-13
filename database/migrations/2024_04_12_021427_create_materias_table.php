@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->integer('grado');
             $table->integer('gestion');
+            $table->unsignedBigInteger('nivel_id');
+
+            $table->foreign('nivel_id')->references('id')->on('nivels')
+                ->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

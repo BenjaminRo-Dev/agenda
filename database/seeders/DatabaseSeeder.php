@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             NivelSeeder::class,
             CursoSeeder::class,
+            MateriaSeeder::class,
         ]);
 
         User::factory()->create([

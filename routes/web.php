@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\CursoController;
+use App\Http\Controllers\Web\MateriaController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::get('/excel', [UserController::class, 'excel'])
     ->name('users.excel')
     ->middleware('auth:sanctum');
 
-
 Route::resource('cursos', CursoController::class)
+    ->middleware('auth:sanctum');
+
+Route::resource('materias', MateriaController::class)
     ->middleware('auth:sanctum');

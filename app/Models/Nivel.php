@@ -14,4 +14,10 @@ class Nivel extends Model
     {
         return $this->hasMany(Curso::class);
     }
+
+    public function materias()
+    {
+        return $this->hasMany(Materia::class);
+    }
+
 }
