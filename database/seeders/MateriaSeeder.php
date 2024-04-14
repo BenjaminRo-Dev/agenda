@@ -11,9 +11,9 @@ class MateriaSeeder extends Seeder
     public function run(): void
     {
         $materias = [
-            'Educación Física',
+            'Educacion Fisica',
             'Valores',
-            'Música',
+            'Musica',
             // 'Matemáticas',
             // 'Lenguaje',
             // 'Ciencias Naturales',
