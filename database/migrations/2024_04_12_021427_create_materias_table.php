@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('grado');
+            $table->string('paralelo');
             $table->integer('gestion');
             $table->unsignedBigInteger('nivel_id');
 

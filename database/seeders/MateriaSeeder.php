@@ -25,18 +25,29 @@ class MateriaSeeder extends Seeder
         ];
 
         $grados = range(1, 6);
-        $niveles = [1,2];
 
+        //Crea las materias para los grados de primaria y el paralelo A
         foreach ($materias as $materia) {
             foreach ($grados as $grado) {
-                foreach ($niveles as $nivel) {
-                    \App\Models\Materia::create([
-                        'nombre' => $materia,
-                        'grado' => $grado,
-                        'nivel_id' => $nivel,
-                        'gestion' => date('Y'),
-                    ]);
-                }
+                \App\Models\Materia::create([
+                    'nombre' => $materia,
+                    'grado' => $grado,
+                    'paralelo' => 'A',
+                    'nivel_id' => 1,//Primario
+                    'gestion' => date('Y'),
+                ]);
+            }
+        }
+        //Crea las materias para los grados de primaria y el paralelo B
+        foreach ($materias as $materia) {
+            foreach ($grados as $grado) {
+                \App\Models\Materia::create([
+                    'nombre' => $materia,
+                    'grado' => $grado,
+                    'paralelo' => 'B',
+                    'nivel_id' => 1,//Primario
+                    'gestion' => date('Y'),
+                ]);
             }
         }
     }

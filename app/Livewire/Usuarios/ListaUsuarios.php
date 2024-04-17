@@ -25,14 +25,14 @@ class ListaUsuarios extends Component
             'buscar' => 'required|string|min:1'
         ]);
 
-        return User::where('' . $this->name . '', 'like', '%' . trim($this->buscar) . '%')
-            ->orderBy('' . $this->name . '', 'asc')
+        return User::whereRaw('LOWER(' . $this->name . ') LIKE ?', ['%' . strtolower(trim($this->buscar)) . '%'])
+            ->orderBy('id', 'desc')
             ->paginate(25);
     }
 
     private function obtenerUsuarios()
     {
-        return User::orderBy('' . $this->name . '', 'asc')
+        return User::orderBy('id', 'desc')
             ->paginate(25);
     }
 }

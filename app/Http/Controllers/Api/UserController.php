@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,15 +14,20 @@ class UserController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if($user){
-                if($user->password == $request->password){
+
+                if (Auth::attempt($request->only('email', 'password'))) {
+                    $user = Auth::user();
+                    $token = $request->user()->createToken($request->email.'_Token');
+                    
                     return response()->json([
                         'message' => 'Login success',
                         'user' => $user,
+                        'token' => $token->plainTextToken,
                         'status_code' => 200,
                     ], 200);
                 }else{
-                    return response()->json(['
-                    message' => 'Password incorrect',
+                    return response()->json([
+                    'message' => 'Password incorrect',
                     'status_code' => 401,
                 ], 401);
                 }
@@ -34,6 +40,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error: '.$e->getMessage(),
+                // 'message' => 'Error interno del servidor',
                 'status_code' => 500,
             ], 500);
         }
