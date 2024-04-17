@@ -35,7 +35,7 @@
                 @foreach ($materias as $fila => $materia)
                     <tr>
                         <td>{{ $materia->nombre }}</td>
-                        <td>{{ $materia->grado }}</td>
+                        <td>{{ $materia->grado }} - {{$materia->paralelo}}</td>
                         <td>{{ $materia->gestion }}</td>
                         <td>{{ $materia->nivel->nombre }}</td>
                         <td>

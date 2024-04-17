@@ -39,6 +39,7 @@
                         <td>{{ $usuario->telefono }} </td>
                         <td>{{ $usuario->email }} </td>
                         <td>
+                            <a href="{{ route('users.show', $usuario) }}" class="btn btn-secondary">Ver</a>
                             <a href="{{ route('users.edit', $usuario) }}" class="btn btn-primary">Editar</a>
                             <form action="{{ route('users.destroy', $usuario) }}" method="POST" class="d-inline">
                                 @csrf

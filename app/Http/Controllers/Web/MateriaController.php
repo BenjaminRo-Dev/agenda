@@ -13,8 +13,8 @@ class MateriaController extends Controller
     public function index()
     {
         // $materias = Materia::all();
-        $materias = Materia::orderBy('nivel_id')->orderBy('grado')->paginate(10);
-        return view('materias.index', compact('materias'));
+        // $materias = Materia::orderBy('nivel_id')->orderBy('grado')->paginate(10);
+        return view('materias.index');
     }
 
     public function create()
