@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg pb-3">
                 {{-- Datos del usuario: --}}
                 <div class="card mt-3 ml-3 mr-3">
                     <div class="card-body">
@@ -32,11 +32,14 @@
                         </div>
                     </div>
                 </div>
-                {{-- curso asignado: --}}
                 @if ($user->estudiante)
                     @include('estudiantes.curso-asignado');
-                {{-- Materias del usuario: --}}
                     @include('estudiantes.lista-materias');
+                @endif
+
+                @if($user->profesor)
+                    {{-- @include('profesores.lista-materias'); --}}
+                    @include('profesores.curso-asignado')
                 @endif
 
             </div>

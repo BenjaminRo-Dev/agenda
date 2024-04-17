@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\AdministradorController;
 use App\Http\Controllers\Web\CursoController;
 use App\Http\Controllers\Web\EstudianteController;
 use App\Http\Controllers\Web\MateriaController;
+use App\Http\Controllers\Web\ProfesorController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\Estudiante;
@@ -36,6 +37,7 @@ Route::middleware('auth:sanctum', AdminMiddleware::class)->group(function () {
 
     // Route::get('asignarCurso/{estudiante}/{curso}', [EstudianteController::class, 'asignarCurso'])->name('asignarCurso');
     Route::post('asignarCurso', [EstudianteController::class, 'asignarCurso'])->name('asignarCurso');
+    Route::post('asignarCursoProfesor', [ProfesorController::class, 'asignarCurso'])->name('asignarCursoProfesor');
 });
 
 

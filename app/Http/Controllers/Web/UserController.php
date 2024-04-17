@@ -65,15 +65,22 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $cursos = Curso::where('gestion', date('Y'))->get();
         if($user->estudiante){
             $materias = $user->estudiante->materias()->where('gestion', date('Y'))->get();
             $curso = $user->estudiante->cursos()->where('gestion', date('Y'))->first();
-            $cursos = Curso::where('gestion', date('Y'))->get();
             return view('usuarios.show', [
                 'user' => $user,
                 'materias' => $materias,
                 'curso' => $curso,
                 'cursos' => $cursos
+            ]);
+        }else if($user->profesor){
+            $curso = $user->profesor->cursos()->where('gestion', date('Y'))->first();
+            return view('usuarios.show', [
+                'user' => $user,
+                'cursos' => $cursos,
+                'curso' => $curso
             ]);
         }else{
             return view('usuarios.show', ['user' => $user]);
