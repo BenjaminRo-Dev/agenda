@@ -15,7 +15,9 @@ class Publicacion extends Model
         'fecha_publicacion',
         'fecha_actividad',
         'gestion',
-        'user_id'];
+        'user_id',
+        'tipo_publicacion_id'
+    ];
 
     public function user()
     {
@@ -32,9 +34,24 @@ class Publicacion extends Model
         return $this->belongsToMany(User::class, 'visualizaciones', 'publicacion_id', 'user_id');
     }
 
-    public function grupos()
+    // public function grupos()
+    // {
+    //     return $this->belongsToMany(Grupo::class);
+    // }
+    
+    public function materias()
     {
-        return $this->belongsToMany(Grupo::class);
+        return $this->morphedByMany(Materia::class, 'publicable');
+    }
+
+    public function cursos()
+    {
+        return $this->morphedByMany(Curso::class, 'publicable');
+    }
+
+    public function roles()
+    {
+        return $this->morphedByMany(Role::class, 'publicable');
     }
 
     public function tipoPublicacion()

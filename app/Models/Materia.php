@@ -26,4 +26,9 @@ class Materia extends Model
         return $this->belongsToMany(Profesor::class);
     }
 
+    public function publicaciones()
+    {
+        return $this->morphToMany(Publicacion::class, 'publicable');
+    }
+
 }

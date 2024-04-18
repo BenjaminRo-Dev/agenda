@@ -26,6 +26,11 @@ class Curso extends Model
         return $this->belongsToMany(Materia::class);
     }
 
+    public function publicaciones()
+    {
+        return $this->morphToMany(Publicacion::class, 'publicable');
+    }
+
     
 
 }

@@ -5,14 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('publicaciones.index') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('publicaciones.index') }}" :active="request()->routeIs('publicaciones.index')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -32,6 +32,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('materias.index') }}" :active="request()->routeIs('materias.index')">
                         {{ __('Materias') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('publicaciones.index') }}" :active="request()->routeIs('publicaciones.index')">
+                        {{ __('Publicaciones') }}
                     </x-nav-link>
                 </div>
 

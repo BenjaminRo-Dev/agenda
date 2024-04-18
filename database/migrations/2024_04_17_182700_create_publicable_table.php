@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('publicables', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
 
-            $table->unsignedBigInteger('tipo_grupo_id');
-            $table->foreign('tipo_grupo_id')->references('id')->on('tipo_grupos')
+            $table->unsignedBigInteger('publicable_id');
+            $table->string('publicable_type');
+
+            $table->unsignedBigInteger('publicacion_id');
+            
+            $table->foreign('publicacion_id')->references('id')->on('publicacions')
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grupos');
+        Schema::dropIfExists('publicable');
     }
 };

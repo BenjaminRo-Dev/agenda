@@ -9,7 +9,8 @@ class Multimedia extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['titulo', 'detalle', 'url'];
+    // protected $fillable = ['titulo', 'detalle', 'url'];
+    protected $fillable = ['url'];
 
     public function publicaciones()
     {

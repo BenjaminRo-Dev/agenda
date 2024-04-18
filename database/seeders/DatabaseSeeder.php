@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             MateriaSeeder::class,
             EstudianteSeeder::class,
             ProfesorSeeder::class,
+            TipoPublicacionSeeder::class,
         ]);
 
         User::factory()->create([

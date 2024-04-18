@@ -16,7 +16,8 @@ class CursoSeeder extends Seeder
         $grados = range(1, 6);
         $paralelos = ['A', 'B'];
         $gestion = 2024;
-        $niveles = [1, 2];
+        // $niveles = [1, 2];
+        $niveles = [1]; //Solo primaria
 
         foreach ($grados as $grado) {
             foreach ($paralelos as $paralelo) {

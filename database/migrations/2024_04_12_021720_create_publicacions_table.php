@@ -13,8 +13,8 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('detalle');
-            $table->date('fechaPublicacion');
-            $table->date('fechaActividad');
+            $table->date('fecha_publicacion');
+            $table->date('fecha_actividad');
             $table->integer('gestion');
             $table->unsignedBigInteger('tipo_publicacion_id');
             $table->unsignedBigInteger('user_id');
@@ -24,8 +24,6 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-
-
 
             $table->timestamps();
         });

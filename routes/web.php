@@ -5,9 +5,11 @@ use App\Http\Controllers\Web\CursoController;
 use App\Http\Controllers\Web\EstudianteController;
 use App\Http\Controllers\Web\MateriaController;
 use App\Http\Controllers\Web\ProfesorController;
+use App\Http\Controllers\Web\PublicacionController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\Estudiante;
+use App\Models\Publicacion;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +40,10 @@ Route::middleware('auth:sanctum', AdminMiddleware::class)->group(function () {
     // Route::get('asignarCurso/{estudiante}/{curso}', [EstudianteController::class, 'asignarCurso'])->name('asignarCurso');
     Route::post('asignarCurso', [EstudianteController::class, 'asignarCurso'])->name('asignarCurso');
     Route::post('asignarCursoProfesor', [ProfesorController::class, 'asignarCurso'])->name('asignarCursoProfesor');
+
+    Route::resource('publicaciones', PublicacionController::class)
+        ->parameters(['publicaciones' => 'publicacion']);
+
 });
 
 
