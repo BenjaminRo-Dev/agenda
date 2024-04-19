@@ -42,7 +42,7 @@ class PublicacionController extends Controller
             'detalle' => 'required',
             'tipo_publicacion_id' => 'required',
             'grupo' => 'required',
-            'file.*' => 'nullable|mimes:jpeg,png,jpg,pdf,mp4|max:2048',
+            'file.*' => 'nullable|mimes:jpeg,png,jpg,pdf,mp4|max:20480',
         ]);
         
         //CREAR PUBLICACION:

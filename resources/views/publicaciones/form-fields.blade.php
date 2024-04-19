@@ -10,7 +10,7 @@
     <div class="form-floating mb-3">
         <textarea class="form-control" style="height: 100px" name="detalle" placeholder="Comentario" id="floatingTextarea"
             required>{{ old('detalle', $publicacion->detalle) }}</textarea>
-        <label for="floatingTextarea">Comentario *</label> 
+        <label for="floatingTextarea">Contenido *</label> 
         @error('detalle')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror

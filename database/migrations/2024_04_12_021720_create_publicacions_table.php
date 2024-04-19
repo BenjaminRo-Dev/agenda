@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('publicacions', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('detalle');
+            $table->text('detalle');
             $table->date('fecha_publicacion');
             $table->date('fecha_actividad');
             $table->integer('gestion');

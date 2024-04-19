@@ -32,7 +32,8 @@ class ListaPublicaciones extends Component
 
     private function obtenerPublicaciones()
     {
-        return Publicacion::orderBy('' . $this->titulo . '', 'asc')
+        //Order by id desc:
+        return Publicacion::orderBy('id', 'desc')
             ->paginate(25);
     }
 }
