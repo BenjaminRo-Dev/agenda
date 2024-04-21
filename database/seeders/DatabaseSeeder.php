@@ -38,6 +38,10 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2 //Profesor
         ]);
 
+        $profesor = Profesor::create([
+            'user_id' => $user1->id,
+        ]);
+
         $curso = Curso::create([
             'grado' => 4,
             'paralelo' => 'A',
@@ -46,8 +50,7 @@ class DatabaseSeeder extends Seeder
             'nombre_completo' => '4 A Secundaria 2024'
         ]);
         
-        // $profesor = Profesor::where('user_id', $user1->id)->first();
-        // $profesor->cursos()->attach($curso);
+        $profesor->cursos()->attach($curso);
 
 
     }
