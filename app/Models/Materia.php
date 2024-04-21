@@ -9,7 +9,7 @@ class Materia extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nombre', 'grado', 'gestion', 'nivel_id'];
+    protected $fillable = ['nombre', 'grado', 'gestion', 'paralelo' , 'nivel_id', 'nombre_completo'];
 
     public function nivel()
     {

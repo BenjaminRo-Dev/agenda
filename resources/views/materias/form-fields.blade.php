@@ -22,6 +22,19 @@
     </div>
 
     <div class="mb-3">
+        <label for="paralelo" class="form-label">Paralelo *</label>
+        <select class="form-select" id="paralelo" name="paralelo" required>
+            <option value="">Seleccione un paralelo</option>
+            @foreach ($paralelos as $paralelo)
+                <option value="{{ $paralelo }}" {{ old('paralelo', $materia->paralelo) == $paralelo ? 'selected' : '' }}>{{ $paralelo }}</option>
+            @endforeach
+        </select>
+        @error('paralelo')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
         <label for="nivel_id" class="form-label">Nivel *</label>
         <select class="form-select" id="nivel_id" name="nivel_id" required>
             <option value="">Seleccione un nivel</option>

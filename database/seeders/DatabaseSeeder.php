@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Curso;
+use App\Models\Profesor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -28,5 +30,25 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'role_id' => 1 //Administrador
         ]);
+
+        $user1 = User::factory()->create([
+            'name' => 'Benjamin Profesor',
+            'password' => bcrypt('00000000'), // 8 veces 0
+            'email' => 'profe@example.com',
+            'role_id' => 2 //Profesor
+        ]);
+
+        $curso = Curso::create([
+            'grado' => 4,
+            'paralelo' => 'A',
+            'gestion' => date('Y'),
+            'nivel_id' => 2,
+            'nombre_completo' => '4 A Secundaria 2024'
+        ]);
+        
+        // $profesor = Profesor::where('user_id', $user1->id)->first();
+        // $profesor->cursos()->attach($curso);
+
+
     }
 }

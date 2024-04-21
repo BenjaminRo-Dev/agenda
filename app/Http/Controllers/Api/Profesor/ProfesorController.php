@@ -26,10 +26,10 @@ class ProfesorController extends Controller
         }
     }
 
-    public function cursos($idProfesor)
+    public function cursos($user_id)
     {       
         try {
-            $profesor = Profesor::find($idProfesor);
+            $profesor = Profesor::where('user_id', $user_id)->first();
             $cursos = $profesor->cursos()->where('gestion', date('Y'))->get();
             $data = [
                 'cursos' => $cursos

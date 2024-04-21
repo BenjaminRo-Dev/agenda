@@ -20,10 +20,12 @@ class MateriaController extends Controller
     public function create()
     {
         $grados = range(1, 6);
+        $paraleos = ['A', 'B', 'C', 'D'];
         $niveles = Nivel::all();
         return view('materias.create', [
             'grados' => $grados,
             'niveles' => $niveles,
+            'paralelos' => $paraleos,
             'materia' => new Materia()
         ]);
     }
@@ -34,10 +36,14 @@ class MateriaController extends Controller
             'nombre' => 'required|string|max:255',
             'grado' => 'required|integer|min:1|max:6|digits:1',
             'nivel_id' => 'required|integer|exists:nivels,id',
+            'paralelo' => 'required|string|size:1',
             //debe ser unico:
             'nombre' => 'unique:materias,nombre,NULL,id,grado,' . $request->grado . ',nivel_id,' . $request->nivel_id,
         ]);
-        $request->merge(['gestion' => date('Y')]);
+        $request->merge([
+            'gestion' => date('Y'),
+            'nombre_completo' => $request->nombre . ' ' . $request->grado . ' ' . $request->paralelo . ' ' . Nivel::find($request->nivel_id)->nombre . ' ' . date('Y'),
+        ]);
 
         $materia = Materia::create($request->all());
         return redirect()->route('materias.index')
@@ -55,6 +61,7 @@ class MateriaController extends Controller
         $niveles = Nivel::all();
         return view('materias.edit', [
             'grados' => $grados,
+            'paralelos' => ['A', 'B', 'C', 'D'],
             'niveles' => $niveles,
             'materia' => $materia
         ]);

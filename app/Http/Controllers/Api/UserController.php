@@ -55,5 +55,18 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function getRole($user_id){
+        try {
+            $user = User::find($user_id);
+            $role = $user->role->nombre;
+            return response()->json([
+                'status_code' => 200,
+                'role' => $role
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al buscar rol'], 500);
+        }
+    }
+
 }
 

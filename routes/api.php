@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Estudiante\MateriaEstudianteController;
 use App\Http\Controllers\Api\MateriaController;
 use App\Http\Controllers\Api\Profesor\MateriaProfesorController;
 use App\Http\Controllers\Api\Profesor\ProfesorController;
+use App\Http\Controllers\Api\Publicacion\PublicacionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,12 +27,13 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('profesor/cursos/{idProfesor}', [ProfesorController::class, 'cursos'])->name('api.profesor.cursos');
     Route::get('profesor/estudiantes-curso/{idProfesor}', [ProfesorController::class, 'estudiantesCurso'])->name('api.profesor.estudiantes-curso');
 
-
     //Login:
-    
     Route::post('validate-token', [UserController::class, 'validateToken'])->name('api.validate-token');
     Route::post('logout', [UserController::class, 'logout'])->name('api.logout');
 
+    //User:
+    Route::get('user/role/{user_id}', [UserController::class, 'getRole'])->name('api.user.getRole');
+    Route::get('user/grupos/{user_id}', [PublicacionController::class, 'grupos'])->name('api.user.grupos');
 
 });
 
