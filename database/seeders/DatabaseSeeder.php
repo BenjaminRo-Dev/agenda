@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Curso;
+use App\Models\Estudiante;
+use App\Models\Materia;
 use App\Models\Profesor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -51,6 +53,22 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $profesor->cursos()->attach($curso);
+
+        //Crear Estudiante:
+        $user2 = User::factory()->create([
+            'name' => 'Antonio Estudiante',
+            'password' => bcrypt('00000000'), // 8 veces 0
+            'email' => 'estu@example.com',
+            'role_id' => 3 //Estudiante
+        ]);
+
+        $estudiante = Estudiante::create([
+            'user_id' => $user2->id,
+        ]);
+
+        $estudiante->cursos()->attach($curso);
+        $materias = Materia::where('grado', $curso->grado)->where('paralelo', $curso->paralelo)->get();
+        $estudiante->materias()->attach($materias);
 
 
     }

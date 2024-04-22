@@ -54,7 +54,31 @@ class PublicacionController extends Controller
 
     public function index(User $user)
     {
-        
+
+        $publicacionesRol = $user->role->publicaciones;
+        // $publicacionesCurso = $user->estudiante->cursos->first()->publicaciones;
+        if($user->isEstudiante()){
+            $publicacionesCurso = $user->estudiante->cursos->first()->publicaciones;
+        }else{
+            $publicacionesCurso = $user->profesor->cursos->first()->publicaciones;
+        }
+
+        $publicaciones = $publicacionesRol->merge($publicacionesCurso);
+
+
+        try{
+            return response()->json([
+                'status_code' => 200,
+                'data' => $publicaciones
+            ], 200);
+
+        }catch (\Exception $e){
+            return response()->json([
+                'status_code' => 500,
+                'message' => 'Error al obtener las publicaciones',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function store(Request $request)

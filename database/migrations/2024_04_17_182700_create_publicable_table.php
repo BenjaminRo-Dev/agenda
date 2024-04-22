@@ -23,6 +23,8 @@ return new class extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
+
+            $table->index(['publicable_id', 'publicable_type', 'publicacion_id']);
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publicable');
+        Schema::dropIfExists('publicables');
     }
 };

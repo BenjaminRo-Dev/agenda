@@ -115,6 +115,14 @@ class User extends Authenticatable
         return $this->hasMany(Publicacion::class);
     }
 
+    public function curso()
+    {
+        if($this->isEstudiante()){
+            return $this->estudiante->cursos;
+        }else{
+            return $this->profesor->cursos;
+        }
+    }
     
 
 

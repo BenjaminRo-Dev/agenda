@@ -35,5 +35,9 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('user/role/{user_id}', [UserController::class, 'getRole'])->name('api.user.getRole');
     Route::get('user/grupos/{user_id}', [PublicacionController::class, 'grupos'])->name('api.user.grupos');
 
+    //Publicacion:
+    // Route::get('publicaciones/role/{role}', [PublicacionController::class, 'index'])->name('api.publicaciones.role.index');
+    Route::get('publicaciones/grupos/{user}', [PublicacionController::class, 'index'])->name('api.publicaciones.grupos.index');
+
 });
 
