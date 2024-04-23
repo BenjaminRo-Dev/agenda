@@ -9,7 +9,7 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['grado', 'paralelo', 'gestion', 'nivel_id'];
+    protected $fillable = ['grado', 'paralelo', 'gestion', 'nivel_id', 'nombre_completo'];
 
     public function nivel()
     {

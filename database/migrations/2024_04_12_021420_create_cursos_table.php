@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('paralelo');
             $table->integer('gestion');
             $table->unsignedBigInteger('nivel_id');
+            $table->string('nombre_completo');
 
             $table->foreign('nivel_id')->references('id')->on('nivels')
                 ->onUpdate('cascade')->onDelete('cascade');

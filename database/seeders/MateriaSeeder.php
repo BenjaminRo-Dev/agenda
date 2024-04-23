@@ -35,6 +35,7 @@ class MateriaSeeder extends Seeder
                     'paralelo' => 'A',
                     'nivel_id' => 1,//Primario
                     'gestion' => date('Y'),
+                    'nombre_completo' => $materia . ' ' . $grado . ' A Primaria ' . date('Y')
                 ]);
             }
         }
@@ -47,6 +48,7 @@ class MateriaSeeder extends Seeder
                     'paralelo' => 'B',
                     'nivel_id' => 1,//Primario
                     'gestion' => date('Y'),
+                    'nombre_completo' => $materia . ' ' . $grado . ' B Primaria ' . date('Y')
                 ]);
             }
         }

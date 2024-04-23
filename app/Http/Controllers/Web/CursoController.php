@@ -40,7 +40,10 @@ class CursoController extends Controller
             'grado' => 'unique:cursos,grado,NULL,id,paralelo,' . $request->paralelo . ',nivel_id,' . $request->nivel_id,
         ]);
 
-        $request->merge(['gestion' => date('Y')]);
+        $request->merge([
+            'gestion' => date('Y'),
+            'nombre_completo' => $request->grado . ' ' . $request->paralelo . ' ' . Nivel::find($request->nivel_id)->nombre . ' ' . date('Y')
+        ]);
         $curso = Curso::create($request->all());
         return redirect()->route('cursos.index')
             ->with('msj_ok', 'Creado: ' . $curso->grado . $curso->paralelo . ' ' . $curso->nivel->nombre);

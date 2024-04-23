@@ -15,7 +15,7 @@ class CursoSeeder extends Seeder
     {
         $grados = range(1, 6);
         $paralelos = ['A', 'B'];
-        $gestion = 2024;
+        $gestion = date('Y');
         // $niveles = [1, 2];
         $niveles = [1]; //Solo primaria
 
@@ -26,7 +26,8 @@ class CursoSeeder extends Seeder
                     'grado' => $grado,
                     'paralelo' => $paralelo,
                     'gestion' => $gestion,
-                    'nivel_id' => $nivel
+                    'nivel_id' => $nivel,
+                    'nombre_completo' => $grado . ' ' . $paralelo . ' Primaria' . $gestion,
                     ]);
 
                     $user = User::factory()->create([

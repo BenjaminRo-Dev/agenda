@@ -78,11 +78,25 @@ class PublicacionController extends Controller
         //INSERTAR EN LA RELACION POLIMORFICA (publicable) DE MUCHOS A MUCHOS DE PUBLICACIONES Y ROLES:
         if ($request->grupo == 'Todos') {
             $grupos = Role::all();
+            $publicacion->roles()->attach($grupos);
         } else {
-            $grupo = Role::where('nombre', ucfirst($request->grupo))->first();
-            $grupos = $grupo ? [$grupo] : [];
+            // $grupo = Role::where('nombre', ucfirst($request->grupo))->first();
+            // $grupos = $grupo ? [$grupo] : [];
+            if($request->grupo == 'Administradores'){
+                $grupo = Role::where('nombre', 'Administrador')->first();
+                $publicacion->roles()->attach($grupo);
+            }else if($request->grupo == 'Profesores'){
+                $grupo = Role::where('nombre', 'Profesor')->first();
+                $publicacion->roles()->attach($grupo);
+            }else if($request->grupo == 'Estudiantes'){
+                $grupo = Role::where('nombre', 'Estudiante')->first();
+                $publicacion->roles()->attach($grupo);
+            }else if($request->grupo == 'Tutores'){
+                $grupo = Role::where('nombre', 'Tutor')->first();
+                $publicacion->roles()->attach($grupo);
+            }
+
         }
-        $publicacion->roles()->attach($grupos);
 
         return redirect()->route('publicaciones.index')->with('msj_ok', 'Publicación creada.');
     }
