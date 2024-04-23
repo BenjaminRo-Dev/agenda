@@ -63,13 +63,29 @@ class PublicacionController extends Controller
             $publicacionesCurso = $user->profesor->cursos->first()->publicaciones;
         }
 
+        //Orden descendente de las publicaciones:
+        $publicacionesRol = $publicacionesRol->sortByDesc('fecha_publicacion');
+        $publicacionesCurso = $publicacionesCurso->sortByDesc('fecha_publicacion');
+
+        //Unir las publicaciones de roles y cursos:
         $publicaciones = $publicacionesRol->merge($publicacionesCurso);
+
+        // $publicaciones = $publicacionesRol->merge($publicacionesCurso);
+        //Los datos de la relacion multimedia publicacion de cada publicacion:
+        $dataMul = [];
+        $autor = "";
+        foreach ($publicaciones as $publicacion) {
+            $dataMul = $publicacion->multimedia;
+            $autor = $publicacion->user->name;
+        }
 
 
         try{
             return response()->json([
                 'status_code' => 200,
-                'data' => $publicaciones
+                'data' => $publicaciones,
+                'autor' => $autor
+                // 'dataMul' => $dataMul
             ], 200);
 
         }catch (\Exception $e){
